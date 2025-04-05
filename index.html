@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sombra Letal Guilda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.95)), url('imagem do site.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 30px;
+    }
+
+    header img {
+      width: 150px;
+      filter: drop-shadow(0 0 20px red);
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #ff4444;
+      margin-top: 10px;
+      text-shadow: 0 0 10px red;
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: red;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    form {
+      margin: 30px auto;
+      max-width: 400px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      border: 2px solid red;
+      box-shadow: 0 0 20px red;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+    }
+
+    input {
+      font-size: 1em;
+    }
+
+    button {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+
+    .social {
+      margin-top: 30px;
+    }
+
+    .social a {
+      margin: 0 10px;
+      font-size: 1.5em;
+      color: red;
+      text-decoration: none;
+    }
+
+    .contador {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.jpg" alt="Logo Sombra Letal">
+    <h1>Recrutamento da Guilda Sombra Letal</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="regras.html">Regras da Guilda</a>
+    </nav>
+  </header>
+
+  <form id="formulario" action="https://formsubmit.co/sombraletal01@gmail.com" method="POST" onsubmit="return validarFormulario()">
+    <input type="text" name="nome" placeholder="Seu nome" required>
+    <input type="text" name="id_do_jogo" placeholder="ID do Free Fire" required>
+    <input type="tel" name="whatsapp" placeholder="Número do WhatsApp" required>
+    <button type="submit">Entrar para a guilda</button>
+    <input type="hidden" name="_next" value="index.html">
+  </form>
+
+  <div class="contador">
+    Já se inscreveram <span id="inscritos">0</span> jogadores!
+  </div>
+
+  <div class="social">
+    <a href="https://www.tiktok.com/@sombra.letal74" target="_blank">TikTok</a>
+  </div>
+
+  <script>
+    function validarFormulario() {
+      const numero = document.querySelector('input[name="whatsapp"]').value;
+      const regex = /\d{10,}/;
+      if (!regex.test(numero)) {
+        alert("Digite um número de WhatsApp válido (com DDD).");
+        return false;
+      }
+
+      let inscritos = localStorage.getItem('inscritos') || 0;
+      inscritos++;
+      localStorage.setItem('inscritos', inscritos);
+      document.getElementById('inscritos').innerText = inscritos;
+      return true;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const inscritos = localStorage.getItem('inscritos') || 0;
+      document.getElementById('inscritos').innerText = inscritos;
+    });
+  </script>
+</body>
+</html>
